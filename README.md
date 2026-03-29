@@ -1,18 +1,10 @@
-# Instructions and Notes
+git commands
 
-## In this session...
-1 Git commands
-    - `git init`
-    - `git status`
-    - `git and.`
-    - `git commit -m "<commit-message>"`
+-`git branch -M main`
+-`git remote add origin <remote-url>`
+-`git push -u origin main"`
 
-2. git ignore the following files
-    - /debug
-    - /logs
-    - .env
-    - allore-results
-    - tests-examples/
-    - example.*
-    - *.log
-    
+issues
+-`git config --list`
+-`git push -f origin main` -force push
+
