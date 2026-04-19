@@ -39,7 +39,7 @@ test.describe("Make Appointment functionality", () => {
     //await page.getByLabel("Username").fill("John Doe");
 
     // press sequentially
-    await page.getByLabel("Username").pressSequentially("John Doe", { delay: 300 });
+    await page.getByLabel("Username").pressSequentially("John Doe", { delay: 100 });
 
 
 
@@ -51,16 +51,56 @@ test.describe("Make Appointment functionality", () => {
     });
 
     test("Should make an appointment with non-default values", async ({ page }) => {
-        // Dropdown
+        // 📍 Dropdown
+        // Assert default option
+        await expect(page.getByLabel("Facility")).toHaveValue("Tokyo CURA Healthcare Center");
         await page.getByLabel("Facility").selectOption("Hongkong CURA Healthcare Center");
 
+        //Select by label or index
+        await page.getByLabel("Facility").selectOption({label: "Seoul CURA Healthcare Center"});
+        await page.getByLabel("Facility").selectOption({index: 0});
+
+        //Assert the count 
+        let dropdownOptionsEle = page.getByLabel("Facility").locator("option");
+        await expect(dropdownOptionsEle).toHaveCount(3);
+
+        //get all dropdown values
+        let listofdropdownValues = await page.getByLabel("Facility").all();
+       
+       let listOfOptions = [];
+       for (let ele of listofdropdownValues){
+        let eleTxt = await ele.textContent();
+        if (eleTxt) {
+            listOfOptions.push(eleTxt);
+        }
+       }
+
+         console.log(`List of dropdown options: ${listOfOptions}`);
+
+
         // checkbox
-        await page.getByRole("checkbox", { name: "Apply for hospital readmission" }).check();
-        await page.getByRole("radio", { name: "Medicaid" }).check();
+        await page.getByText("Apply for hospital readmission" ).check();
+        await page.getByText("Apply for hospital readmission" ).uncheck();
+
+
+        // radio button
+
+        await expect(page.getByText("Medicare")).toBeChecked();
+
+        await page.getByText("Medicaid").click();
+        await expect(page.getByText("Medicare")).not.toBeChecked();
+
+
+        //date input box
         await page.getByRole("textbox", { name: "Visit Date (Required)" }).click();
-        await page.getByRole("cell", { name: "22" }).click();
+        await page.getByRole("textbox", { name: "Visit Date (Required)" }).fill("05/10/2027");
+        await page.getByRole("textbox", { name: "Visit Date (Required)" }).press("Enter");
+        
+        // multi-line comments        
         await page.getByRole("textbox", { name: "Comment" }).click();
         await page.getByRole("textbox", { name: "Comment" }).fill("this is a multi-line comments\ncaptured by playwright");
+
+        //button
         await page.getByRole("button", { name: "Book Appointment" }).click();
         await expect(page.locator("h2")).toContainText("Appointment Confirmation");
         await expect(page.getByRole("link", { name: "Go to Homepage" })).toBeVisible();
