@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.only("should demo locators", async ({ page }) => {
+test("should demo locators", async ({ page }) => {
 //
 
 
