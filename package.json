@@ -4,7 +4,8 @@
   "description": "Playwright E2E Tests with AI capability incl MCP",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test --headed"
+    "test": "playwright test --headed",
+    "inventory": "npx playwright test tests/functional/inventory.spec.ts --headed"
   },
 
   "keywords": [
