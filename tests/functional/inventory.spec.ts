@@ -59,10 +59,27 @@ import{test, expect} from "@playwright/test";
         }
         expect(priceArrwithinvalidvalues).toHaveLength(0);
     });
+
+    test("Should add first product to cart and complete checkout", async ({ page }) => {
+        const firstProduct = page.locator('.inventory_item').first();
+        await firstProduct.locator('button:text("Add to cart")').click();
+
+        await page.locator('.shopping_cart_link').click();
+        await expect(page).toHaveURL(/.*cart.html/);
+        await expect(page.locator('.cart_item')).toHaveCount(1);
+
+        await page.locator('[data-test="checkout"]').click();
+        await expect(page).toHaveURL(/.*checkout-step-one.html/);
+
+        await page.locator('[data-test="firstName"]').fill('Sorin');
+        await page.locator('[data-test="lastName"]').fill('Test');
+        await page.locator('[data-test="postalCode"]').fill('12345');
+        await page.locator('[data-test="continue"]').click();
+        await expect(page).toHaveURL(/.*checkout-step-two.html/);
+
+        await page.locator('[data-test="finish"]').click();
+        await expect(page).toHaveURL(/.*checkout-complete.html/);
+        await expect(page.locator('.complete-header')).toContainText(/thank you for your order/i);
+        await expect(page.locator('.complete-text')).toContainText('Your order has been dispatched');
+    });
 });
-/**
-Replace all $ with ""
-compare the price which should be  > 0
-
-
- */
