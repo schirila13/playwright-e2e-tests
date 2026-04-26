@@ -1,0 +1,9 @@
+Product: Sauce Labs Backpack, price: $29.99
+Product: Sauce Labs Bike Light, price: $9.99
+Product: Sauce Labs Bolt T-Shirt, price: $15.99
+Product: Sauce Labs Fleece Jacket, price: $49.99
+Product: Sauce Labs Onesie, price: $7.99
+Product: Test.allTheThings() T-Shirt (Red), price: $15.99
+Original Price Array: $29.99,$9.99,$15.99,$49.99,$7.99,$15.99
+Price without $: 29.99,9.99,15.99,49.99,7.99,15.99
+All products have valid prices.

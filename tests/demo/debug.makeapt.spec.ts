@@ -37,7 +37,7 @@ test.describe("Make Appointment functionality", () => {
         // Multi-line comments input box
         await page. getByRole ("textbox", { name: "Comment" }). click();
         await page.getByRole("textbox", { name: "Comment" }). fill("This is a multi-line comments\ncaptured today");
-        
+
         // Button
         await page. getByRole ("button", {name: "Book Appointment" }). click();
         // Assertion
@@ -47,4 +47,3 @@ test.describe("Make Appointment functionality", () => {
 
     // Nore tests 
 });
-
