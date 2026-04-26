@@ -6,7 +6,8 @@
   "scripts": {
     "test": "playwright test --headed",
     "inventory": "npx playwright test tests/functional/inventory.spec.ts --headed",
-    "debug": "npx playwright test tests/demo/debug.makeapt.spec.ts --headed"
+    "debug": "npx playwright test tests/demo/debug.makeapt.spec.ts --headed",
+    "debug:ui": "npx playwright test tests/demo/debug.makeapt.spec.ts --ui --headed"
   },
 
   "keywords": [
