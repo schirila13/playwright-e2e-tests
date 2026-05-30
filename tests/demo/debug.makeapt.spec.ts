@@ -41,7 +41,7 @@ test.describe("Make Appointment functionality", () => {
         // Button
         await page. getByRole ("button", {name: "Book Appointment" }). click();
         // Assertion
-        await expect (page. locator("h2")). toContainText ("Appointment Confirmation"); await expect (page.getByRole("Link", { name: "Go to Homepage" })). toBeVisible()
+        await expect (page. locator("h2")). toContainText ("Appointment Confirmation"); await expect (page.getByRole("link", { name: "Go to Homepage" })). toBeVisible()
         
     });
 
