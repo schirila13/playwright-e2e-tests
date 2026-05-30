@@ -14,6 +14,7 @@ test.describe("Make Appointment functionality", {annotation: { type:"Story", des
     // 3.Successful Login
     await page.getByLabel("Username").fill("John Doe");
     await page.getByLabel("Password").fill("ThisIsNotAPassword");
+    await page.getByRole("button", { name: "Login" }).click();
 
     // 4. Assert if the appointment page is loaded
     await expect(page.locator("h2")).toContainText("Make Appointment");
