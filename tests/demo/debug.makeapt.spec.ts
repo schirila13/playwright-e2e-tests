@@ -1,6 +1,9 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("Make Appointment functionality", () => {
+test.describe("Make Appointment functionality", {
+  annotation: { type: "Story", description: "User should be able to make an appointment" },
+  tag: "@regression",
+}, () => {
     test.beforeEach("Login with valid creds", async ({ page }) => {
     // 1. Lounch URL;
     await page.goto("https://katalon-demo-cura.herokuapp.com/");

@@ -7,7 +7,13 @@ import{test, expect} from "@playwright/test";
  * Assert that all products have non-zero dollar value
  */
  
- test.describe("Inventory feature", () => {
+ test.describe("Inventory feature", {
+  annotation: [
+    { type: "Story", description: "User should be able to view inventory and complete a purchase" },
+    { type: "owner", description: "checkout-team" },
+  ],
+  tag: "@regression",
+}, () => {
     test.beforeEach("Login with valid creds", async ({page}) => {
 
         //Launch the Url

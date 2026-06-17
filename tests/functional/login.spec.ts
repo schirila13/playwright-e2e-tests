@@ -1,6 +1,9 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("Login functionality", () => {
+test.describe("Login functionality", {
+  annotation: { type: "Story", description: "User should be able to login with valid and invalid credentials" },
+  tag: "@regression",
+}, () => {
   test.beforeEach("Go to login page", async ({ page }) => {
     // 1. Lounch URL;
     await page.goto("https://katalon-demo-cura.herokuapp.com/");
@@ -14,7 +17,7 @@ test.describe("Login functionality", () => {
     await expect(page.getByText("Please login to make")).toBeVisible();
   });
 
-  test("Should login successfully", async ({ page }) => {
+  test("Should login successfully", { tag: "@smoke" }, async ({ page }) => {
     // 3.Successful Login
     await page.getByLabel("Username").fill("John Doe");
     await page.getByLabel("Password").fill("ThisIsNotAPassword");
